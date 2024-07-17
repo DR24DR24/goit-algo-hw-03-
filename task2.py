@@ -1,17 +1,31 @@
-import argparse
-import os
+import turtle
+import math
+def koch_curve(t, order, size):
+    if order == 0:
+        t.forward(size)
+    else:
+        for angle in [60, -120, 60, 0]:
+            koch_curve(t, order - 1, size / 3)
+            t.left(angle)
 
-cur_dir=os.getcwd()
+def draw_koch_curve(order, size=300):
+    window = turtle.Screen()
+    window.bgcolor("white")
 
-print(f"cur_dir {cur_dir}")
+    t = turtle.Turtle()
+    t.speed(0)  
+    t.penup()
+    t.goto(-size / 2, +size / 2 *math.cos(math.pi/6))
+    t.pendown()
 
-parser=argparse.ArgumentParser(description="File rearange")
-parser.add_argument("source",     type=str,nargs='?', default=cur_dir, help="source dir")
-parser.add_argument("destination",type=str,nargs='?', default='dist',  help="source dir")
+    koch_curve(t, order, size)
+    t.seth(-120)
+    koch_curve(t, order, size)
+    t.seth(120)
+    koch_curve(t, order, size)
+    window.mainloop()
 
-args=parser.parse_args()
+# Виклик функції
+draw_koch_curve(3)
 
-print(args.source)
-print(args.destination)
 
-os.makedirs(args.destination)
