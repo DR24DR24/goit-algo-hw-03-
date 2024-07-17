@@ -1,6 +1,19 @@
 import time
 from functools import lru_cache
 
+"""This is a non-standard solution to the Tower of Hanoi problem.
+in this solution there are no assumptions about what the algorithm should be.
+a solution is sought by exhaustive search,
+cutting off dead-end and previously considered options.
+At each stage, the number of steps that we go through
+for each possible solution branch is determined.
+if a solution with a given number of steps is not achieved on any of the branches,
+then the number of steps is increased by one.
+the described algorithm allows you to search for the optimal solution
+not only for a standard problem with three axes
+but also for an arbitrary number of axes """
+
+
 hanoi_towers=[[],[],[]]
 
 old_case={}
@@ -91,4 +104,4 @@ print(f"duration: {time.time()-start_time}")
 #     print(f"Кінцевий стан: {towers}")
 
 # if __name__ == "__main__":
-    main()
+    # main()
